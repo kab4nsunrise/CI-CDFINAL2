@@ -27,7 +27,6 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     needs: test
-    # Условие удалено — теперь джоб запускается всегда
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
@@ -45,5 +44,4 @@ jobs:
           push: true
           tags: |
             kab4nsunrise/parcel-tracker:latest
-            # Если это тег (например, v1.0.0) — используем имя тега, иначе — хэш коммита
             kab4nsunrise/parcel-tracker:${{ startsWith(github.ref, 'refs/tags/v') && github.ref_name || github.sha }}
